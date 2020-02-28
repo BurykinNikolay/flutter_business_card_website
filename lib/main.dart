@@ -1,7 +1,9 @@
 import 'package:built_redux/built_redux.dart';
+import 'package:dioc/dioc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_built_redux/flutter_built_redux.dart';
 
+import 'di/di_container.dart';
 import 'domain/domain.dart';
 import 'presentation/home/home.dart';
 
@@ -20,9 +22,14 @@ class _MyAppState extends State<MyApp> {
     AppActions(),
     middleware: middlewares,
   );
+
   @override
   void initState() {
     super.initState();
+    diContainer.register<Store<AppState, AppStateBuilder, AppActions>>(
+      (container) => store,
+      defaultMode: InjectMode.singleton,
+    );
   }
 
   @override

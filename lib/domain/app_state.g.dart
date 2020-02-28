@@ -7,10 +7,17 @@ part of 'app_state.dart';
 // **************************************************************************
 
 class _$AppState extends AppState {
+  @override
+  final AppTab activeTab;
+
   factory _$AppState([void Function(AppStateBuilder) updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._() : super._();
+  _$AppState._({this.activeTab}) : super._() {
+    if (activeTab == null) {
+      throw new BuiltValueNullFieldError('AppState', 'activeTab');
+    }
+  }
 
   @override
   AppState rebuild(void Function(AppStateBuilder) updates) =>
@@ -22,24 +29,38 @@ class _$AppState extends AppState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is AppState;
+    return other is AppState && activeTab == other.activeTab;
   }
 
   @override
   int get hashCode {
-    return 134797703;
+    return $jf($jc(0, activeTab.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('AppState').toString();
+    return (newBuiltValueToStringHelper('AppState')
+          ..add('activeTab', activeTab))
+        .toString();
   }
 }
 
 class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   _$AppState _$v;
 
+  AppTab _activeTab;
+  AppTab get activeTab => _$this._activeTab;
+  set activeTab(AppTab activeTab) => _$this._activeTab = activeTab;
+
   AppStateBuilder();
+
+  AppStateBuilder get _$this {
+    if (_$v != null) {
+      _activeTab = _$v.activeTab;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(AppState other) {
@@ -56,7 +77,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
 
   @override
   _$AppState build() {
-    final _$result = _$v ?? new _$AppState._();
+    final _$result = _$v ?? new _$AppState._(activeTab: activeTab);
     replace(_$result);
     return _$result;
   }

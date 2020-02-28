@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'home_bloc.dart';
+import 'home_view.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return HomeBlocInjector(
       bloc: bloc,
-      child: Container(),
+      child: HomeView(),
     );
   }
 }

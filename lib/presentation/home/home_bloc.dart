@@ -1,6 +1,13 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_business_card_website/presentation/base/base_bloc.dart';
 
-class HomeBloc {}
+class HomeBloc extends BaseBloc {
+  @override
+  void init() {
+    print("fuck");
+    super.init();
+  }
+}
 
 class HomeBlocInjector extends InheritedWidget {
   HomeBlocInjector({
