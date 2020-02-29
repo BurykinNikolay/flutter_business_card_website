@@ -183,6 +183,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.3"
+  dioc:
+    dependency: "direct main"
+    description:
+      name: dioc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6"
   fixnum:
     dependency: transitive
     description:
