@@ -1,6 +1,6 @@
 import 'package:built_value/built_value.dart';
 
-import 'domain.dart';
+import '../domain.dart';
 
 part 'app_state.g.dart';
 

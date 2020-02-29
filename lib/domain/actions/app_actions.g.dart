@@ -15,8 +15,14 @@ class _$AppActions extends AppActions {
   factory _$AppActions() => _$AppActions._();
   _$AppActions._() : super._();
 
+  final updateTab = ActionDispatcher<AppTab>('AppActions-updateTab');
+
   @override
-  void setDispatcher(Dispatcher dispatcher) {}
+  void setDispatcher(Dispatcher dispatcher) {
+    updateTab.setDispatcher(dispatcher);
+  }
 }
 
-class AppActionsNames {}
+class AppActionsNames {
+  static final updateTab = ActionName<AppTab>('AppActions-updateTab');
+}
