@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_business_card_website/domain/models/app_tab.dart';
+import 'package:flutter_business_card_website/domain/models/app_theme.dart';
+import 'package:flutter_business_card_website/other/buisness_card_icons.dart';
+import 'package:flutter_business_card_website/presentation/about/about.dart';
 import 'package:flutter_business_card_website/presentation/home/components/tab_icon.dart';
 
 import 'home_bloc.dart';
@@ -15,11 +18,11 @@ class _HomeViewState extends State<HomeView> {
   HomeBloc get bloc => HomeBlocInjector.of(context).bloc;
 
   final List<Widget> _pagesList = [
+    About(),
     Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.green,
+      child: Center(
+        child: Text("Page in Progress"),
+      ),
     ),
   ];
 
@@ -28,9 +31,23 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: _buildTabBar(),
+      appBar: AppBar(
+        actions: <Widget>[
+          StreamBuilder<AppTheme>(
+            stream: bloc.currentThemeStream,
+            initialData: bloc.appTheme,
+            builder: (context, snapshot) {
+              return IconButton(
+                icon: Icon(snapshot.data == AppTheme.light ? Icons.wb_sunny : BuisnessCardIcons.moon),
+                onPressed: () => bloc.updateTheme(),
+              );
+            },
+          ),
+        ],
+      ),
       body: StreamBuilder<AppTab>(
         initialData: bloc.activeTab,
-        stream: bloc.currentPage,
+        stream: bloc.currentPageStream,
         builder: (context, snapshot) {
           return _pagesList[AppTab.toIndex(snapshot.data)];
         },
@@ -41,11 +58,10 @@ class _HomeViewState extends State<HomeView> {
   Widget _buildTabBar() {
     return StreamBuilder<AppTab>(
       initialData: bloc.activeTab,
-      stream: bloc.currentPage,
+      stream: bloc.currentPageStream,
       builder: (context, snapshot) {
         final currentIndex = AppTab.toIndex(snapshot.data);
         return CupertinoTabBar(
-          backgroundColor: Colors.black,
           currentIndex: currentIndex,
           items: _buildItems(currentIndex),
           onTap: (int index) {

@@ -5,6 +5,7 @@ import 'package:flutter_built_redux/flutter_built_redux.dart';
 
 import 'di/di_container.dart';
 import 'domain/domain.dart';
+import 'other/themes.dart';
 import 'presentation/home/home.dart';
 
 void main() => runApp(MyApp());
@@ -36,12 +37,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ReduxProvider(
       store: store,
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: StoreConnection<AppState, AppActions, AppTheme>(
+        connect: (appState) => appState.appTheme,
+        builder: (ctx, appTheme, actions) => MaterialApp(
+          title: 'Nikolay Burykin',
+          theme: appTheme == AppTheme.dark ? darkTheme(context) : lightTheme(context),
+          home: Home(),
         ),
-        home: Home(),
       ),
     );
   }

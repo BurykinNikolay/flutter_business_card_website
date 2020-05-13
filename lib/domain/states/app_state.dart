@@ -10,8 +10,11 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   factory AppState([updates(AppStateBuilder builder)]) {
     return _$AppState((builder) => builder
       ..activeTab = AppTab.about
+      ..appTheme = AppTheme.light
       ..update(updates));
   }
 
   AppTab get activeTab;
+
+  AppTheme get appTheme;
 }

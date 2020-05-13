@@ -10,4 +10,5 @@ abstract class AppActions extends ReduxActions {
   factory AppActions() = _$AppActions;
 
   ActionDispatcher<AppTab> get updateTab;
+  ActionDispatcher<AppTheme> get setAppTheme;
 }

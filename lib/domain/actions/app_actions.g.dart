@@ -16,13 +16,16 @@ class _$AppActions extends AppActions {
   _$AppActions._() : super._();
 
   final updateTab = ActionDispatcher<AppTab>('AppActions-updateTab');
+  final setAppTheme = ActionDispatcher<AppTheme>('AppActions-setAppTheme');
 
   @override
   void setDispatcher(Dispatcher dispatcher) {
     updateTab.setDispatcher(dispatcher);
+    setAppTheme.setDispatcher(dispatcher);
   }
 }
 
 class AppActionsNames {
   static final updateTab = ActionName<AppTab>('AppActions-updateTab');
+  static final setAppTheme = ActionName<AppTheme>('AppActions-setAppTheme');
 }

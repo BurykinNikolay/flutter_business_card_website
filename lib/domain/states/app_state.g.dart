@@ -9,13 +9,18 @@ part of 'app_state.dart';
 class _$AppState extends AppState {
   @override
   final AppTab activeTab;
+  @override
+  final AppTheme appTheme;
 
   factory _$AppState([void Function(AppStateBuilder) updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.activeTab}) : super._() {
+  _$AppState._({this.activeTab, this.appTheme}) : super._() {
     if (activeTab == null) {
       throw new BuiltValueNullFieldError('AppState', 'activeTab');
+    }
+    if (appTheme == null) {
+      throw new BuiltValueNullFieldError('AppState', 'appTheme');
     }
   }
 
@@ -29,18 +34,21 @@ class _$AppState extends AppState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is AppState && activeTab == other.activeTab;
+    return other is AppState &&
+        activeTab == other.activeTab &&
+        appTheme == other.appTheme;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, activeTab.hashCode));
+    return $jf($jc($jc(0, activeTab.hashCode), appTheme.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AppState')
-          ..add('activeTab', activeTab))
+          ..add('activeTab', activeTab)
+          ..add('appTheme', appTheme))
         .toString();
   }
 }
@@ -52,11 +60,16 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   AppTab get activeTab => _$this._activeTab;
   set activeTab(AppTab activeTab) => _$this._activeTab = activeTab;
 
+  AppTheme _appTheme;
+  AppTheme get appTheme => _$this._appTheme;
+  set appTheme(AppTheme appTheme) => _$this._appTheme = appTheme;
+
   AppStateBuilder();
 
   AppStateBuilder get _$this {
     if (_$v != null) {
       _activeTab = _$v.activeTab;
+      _appTheme = _$v.appTheme;
       _$v = null;
     }
     return this;
@@ -77,7 +90,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
 
   @override
   _$AppState build() {
-    final _$result = _$v ?? new _$AppState._(activeTab: activeTab);
+    final _$result =
+        _$v ?? new _$AppState._(activeTab: activeTab, appTheme: appTheme);
     replace(_$result);
     return _$result;
   }

@@ -10,7 +10,7 @@ class TabIcon extends StatelessWidget {
     final bool active = currentIndex == AppTab.toIndex(tab);
     return Icon(
       active ? AppTab.activeIconByTab(tab) : AppTab.passiveIconByTab(tab),
-      color: active ? Colors.white : Colors.grey,
+      color: active ? Theme.of(context).cursorColor : Theme.of(context).disabledColor ,
     );
   }
 }
